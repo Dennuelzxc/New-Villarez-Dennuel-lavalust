@@ -98,7 +98,7 @@ $config['base_url'] 				= '';
 | Enable Static Proxies / Facades
 |
 */
-$config['proxy_enabled']           = FALSE;
+$config['proxy_enabled']           = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -399,7 +399,7 @@ $config['security_headers'] = [
     // ── API ──
     'api_max_body' => 1048576,
     'cors' => [
-        'allowed_origins' => [],
+        'allowed_origins' => ['http://localhost:5173', 'http://localhost:3000', 'http://localhost:8000'],
         'credentials'     => false,
         'methods'         => 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
         'headers'         => 'Authorization, Content-Type, X-Requested-With',
