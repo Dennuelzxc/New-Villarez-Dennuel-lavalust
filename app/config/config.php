@@ -399,7 +399,11 @@ $config['security_headers'] = [
     // ── API ──
     'api_max_body' => 1048576,
     'cors' => [
-        'allowed_origins' => ['http://localhost:5173', 'http://localhost:3000', 'http://localhost:8000'],
+        // Extra origins (e.g. the deployed frontend) come from CORS_ALLOWED_ORIGINS, comma-separated
+        'allowed_origins' => array_merge(
+            ['http://localhost:5173', 'http://localhost:3000', 'http://localhost:8000'],
+            array_filter(array_map('trim', explode(',', getenv('CORS_ALLOWED_ORIGINS') ?: '')))
+        ),
         'credentials'     => false,
         'methods'         => 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
         'headers'         => 'Authorization, Content-Type, X-Requested-With',
